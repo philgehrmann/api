@@ -1,17 +1,15 @@
 const asyncHandler = require("express-async-handler");
-
+const Goal = require('../model/goalModal')
 //@desc     Get data
 //@route    /api/goals
 //@access   Private
 const { json } = require("body-parser");
+const { GSSAPICanonicalizationValue } = require("mongodb");
 
 //@access   Private
 const getData = asyncHandler(async (req, res) => {
-  res.status(200).json({
-    message: "Get method",
-    name: "Phil",
-    lastname: "Gehrmann",
-  })
+  const goals = await Goal.find()
+  res.status(200).json(goals)
 })
 
 //@desc     Post data
@@ -22,11 +20,10 @@ const postData = asyncHandler(async (req, res) => {
     res.status(400);
     throw new Error("Please add a text field");
   } else {
-    res.status(200).json({
-      message: "Get method",
-      name: "Phil",
-      lastname: "Gehrmann",
-    })
+      const goal = await Goal.create({
+          text: req.body.text
+      })
+    res.status(200).json(goal)
   }
 })
 
