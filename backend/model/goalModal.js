@@ -1,7 +1,15 @@
 const { triggerAsyncId } = require('async_hooks');
 const mongoose = require('mongoose');
 
-const usersSchema = mongoose.Schema({
+const goalSchema = mongoose.Schema({
+    id : {},
+    status:{
+     type: Boolean,
+    },
+    verified:{
+        type: Boolean,
+        mailhook: ""
+    },
     email: {
         type: String,
         required: [true, 'Please add a Emailadress']
@@ -30,4 +38,4 @@ const usersSchema = mongoose.Schema({
     timestamps: true,
 })
 
-module.exports = mongoose.model('Users', usersSchema)
+module.exports = mongoose.model('Goals', goalSchema)
