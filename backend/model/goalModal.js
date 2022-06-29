@@ -3,6 +3,11 @@ const mongoose = require('mongoose');
 
 const goalSchema = mongoose.Schema({
     id : {},
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: 'User'
+    },
     status:{
      type: Boolean,
     },
@@ -10,29 +15,9 @@ const goalSchema = mongoose.Schema({
         type: Boolean,
         mailhook: ""
     },
-    email: {
+    text: {
         type: String,
-        required: [true, 'Please add a Emailadress']
-    },
-    firstname:{
-        type: String,
-        required: [true, 'Please add a Firstname']
-    },
-    lastname:{
-        type: String,
-        required: [true, 'Please add a Lastname']
-    },
-    dayofbirth:{
-        type: String,
-        required: [true, 'Please add your Day of Birth']
-    },
-    username:{
-        type: String,
-        required: [true, 'Please add a Username']
-    },
-    password:{
-        type: String,
-        required: [true, 'Please add a Password']
+        required: [true, 'Please add a Text']
     },
 }, {
     timestamps: true,

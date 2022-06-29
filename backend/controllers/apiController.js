@@ -22,12 +22,7 @@ const postData = asyncHandler(async (req, res) => {
     throw new Error("Please add your Userdata");
   } else {
     const users = await Goals.create({
-      email: req.body.email,
-      firstname: req.body.firstname,
-      lastname: req.body.lastname,
-      username: req.body.username,
-      dayofbirth: req.body.dayofbirth,
-      password: req.body.password,
+      text:req.params.text
     });
     res.status(200).json(users);
   }
